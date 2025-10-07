@@ -2,12 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>rockwatcher</title>
+    <title>Rock Watcher</title>
+    <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
+
   <body>
-    <div id="app"></div>
+    <header>
+      <h1>🚀 Rock Watcher</h1>
+      <p>Tracking Near-Earth Asteroids in Real Time</p>
+    </header>
+
+    <main id="app">
+      <section id="asteroid-list"></section>
+      <section id="asteroid-detail" class="hidden"></section>
+    </main>
+
+    <footer>
+      <p>Powered by NASA NEO API</p>
+    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
