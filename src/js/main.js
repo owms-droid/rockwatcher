@@ -6,11 +6,18 @@ let cachedAsteroids = [];
 // Initialize asteroid list only when container exists
 async function init() {
   const asteroidListContainer = document.getElementById("asteroid-list");
-  if (!asteroidListContainer) return;
+  if (!asteroidListContainer) {
+    console.log(
+      "No asteroid-list container found, skipping asteroid initialization",
+    );
+    return;
+  }
 
+  console.log("Initializing asteroid list...");
   try {
     const today = new Date().toISOString().split("T")[0];
     cachedAsteroids = await getAsteroids(today);
+    console.log("Fetched asteroids:", cachedAsteroids.length);
     applySortAndRender();
     wireSortControl();
   } catch (error) {
@@ -35,20 +42,28 @@ function sortAsteroids(asteroids, mode) {
   const arr = asteroids.slice();
   const getMetrics = (a) => {
     const approach = a.close_approach_data && a.close_approach_data[0];
-    const distance = approach ? parseFloat(approach.miss_distance.kilometers) : Number.POSITIVE_INFINITY;
-    const speed = approach ? parseFloat(approach.relative_velocity.kilometers_per_hour) : Number.NEGATIVE_INFINITY;
+    const distance = approach
+      ? parseFloat(approach.miss_distance.kilometers)
+      : Number.POSITIVE_INFINITY;
+    const speed = approach
+      ? parseFloat(approach.relative_velocity.kilometers_per_hour)
+      : Number.NEGATIVE_INFINITY;
     return { distance, speed };
   };
   switch (mode) {
     case "distance-desc":
-      return arr.sort((a, b) => getMetrics(b).distance - getMetrics(a).distance);
+      return arr.sort(
+        (a, b) => getMetrics(b).distance - getMetrics(a).distance,
+      );
     case "speed-asc":
       return arr.sort((a, b) => getMetrics(a).speed - getMetrics(b).speed);
     case "speed-desc":
       return arr.sort((a, b) => getMetrics(b).speed - getMetrics(a).speed);
     case "distance-asc":
     default:
-      return arr.sort((a, b) => getMetrics(a).distance - getMetrics(b).distance);
+      return arr.sort(
+        (a, b) => getMetrics(a).distance - getMetrics(b).distance,
+      );
   }
 }
 

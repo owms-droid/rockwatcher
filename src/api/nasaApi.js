@@ -1,8 +1,8 @@
 // NASA NEO Feed endpoint
 const API_URL = "https://api.nasa.gov/neo/rest/v1/feed";
 
-// Vite automatically injects environment variables that start with VITE_
-const API_KEY = "7AhBdjYv95e7JWvK5VVk0IzQruRtAYeZciQfqAVU";
+// Using a valid API key directly
+const API_KEY = "zdUP8ElJv1cehFM0rsZVSQN7uBVxlDnu4diHlLSb";
 
 export async function getAsteroids(startDate, endDate) {
   try {
@@ -24,7 +24,9 @@ export async function getAsteroids(startDate, endDate) {
 // Fetch a single asteroid by NASA NEO id
 export async function getAsteroidById(asteroidId) {
   try {
-    const res = await fetch(`${API_URL.replace("/feed", "")}/neo/${asteroidId}?api_key=${API_KEY}`);
+    const res = await fetch(
+      `${API_URL.replace("/feed", "")}/neo/${asteroidId}?api_key=${API_KEY}`,
+    );
     if (!res.ok) {
       throw new Error(`NASA API error: ${res.status} ${res.statusText}`);
     }

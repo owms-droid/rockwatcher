@@ -1,4 +1,4 @@
-export function renderOrbitChart(canvasId, asteroid) {
+export function renderOrbitChart(canvasId) {
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext("2d");
 

@@ -1,5 +1,4 @@
 // src/js/asteroidList.js
-import { renderAsteroidDetail } from "./asteroidDetail.js";
 import { formatDistance, formatSpeed } from "./utils.mjs";
 
 function safeGetApproach(asteroid) {
@@ -41,7 +40,7 @@ export function renderAsteroidList(asteroids) {
     li.querySelector(".detail-btn").addEventListener("click", () => {
       const id = asteroid.id || asteroid.neo_reference_id;
       if (id) {
-        window.location.href = `/pages/details.html?id=${encodeURIComponent(id)}`;
+        window.location.href = `details.html?id=${encodeURIComponent(id)}`;
       }
     });
     list.appendChild(li);

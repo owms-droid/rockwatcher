@@ -1,10 +1,34 @@
-<div class="logo-container">
-  <img class="logo" src="/images/rockwatcherlogo.svg" alt="rockwatcher logo" />
-  <a class="app-name" href="/index.html">RockWatcher</a>
-  
-</div>
-<div class="nav-links">
-  <a href="/index.html">Home</a>
-  <a href="/pages/list.html">Asteroids</a>
-  <a href="/pages/about.html">About</a>
-</div>
+<nav class="navbar">
+  <div class="logo-container">
+    <img
+      class="logo"
+      id="logo-img"
+      src="../images/rockwatcherlogo.svg"
+      alt="rockwatcher logo"
+    />
+    <a class="app-name" href="/" id="home-link">RockWatcher</a>
+  </div>
+  <div class="nav-links">
+    <a href="/" id="home-nav">Home</a>
+    <a href="/src/pages/list.html" id="list-nav">Asteroids</a>
+    <a href="/src/pages/about.html" id="about-nav">About</a>
+  </div>
+</nav>
+<script>
+  // Fix navigation paths based on current location
+  const basePath = window.location.pathname.includes("/src/") ? "/.." : "";
+  document.getElementById("home-link").href = basePath + "/";
+  document.getElementById("home-nav").href = basePath + "/";
+  document.getElementById("list-nav").href = basePath + "/src/pages/list.html";
+  document.getElementById("about-nav").href =
+    basePath + "/src/pages/about.html";
+
+  // Fix logo image path
+  const logoImg = document.getElementById("logo-img");
+  if (logoImg) {
+    const isRoot = !window.location.pathname.includes("/src/");
+    logoImg.src = isRoot
+      ? "./src/images/rockwatcherlogo.svg"
+      : "../images/rockwatcherlogo.svg";
+  }
+</script>

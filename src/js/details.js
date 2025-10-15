@@ -17,12 +17,16 @@ function renderDetail(asteroid) {
   const section = document.getElementById("asteroid-detail");
   if (!section) return;
 
-  const approach = (asteroid.close_approach_data && asteroid.close_approach_data[0]) || null;
-  const diameter = asteroid.estimated_diameter && asteroid.estimated_diameter.meters
-    ? safeNumber(asteroid.estimated_diameter.meters.estimated_diameter_max)
-    : "Unknown";
+  const approach =
+    (asteroid.close_approach_data && asteroid.close_approach_data[0]) || null;
+  const diameter =
+    asteroid.estimated_diameter && asteroid.estimated_diameter.meters
+      ? safeNumber(asteroid.estimated_diameter.meters.estimated_diameter_max)
+      : "Unknown";
 
-  const speed = approach ? approach.relative_velocity.kilometers_per_hour : null;
+  const speed = approach
+    ? approach.relative_velocity.kilometers_per_hour
+    : null;
   const distance = approach ? approach.miss_distance.kilometers : null;
 
   section.innerHTML = `
@@ -32,7 +36,7 @@ function renderDetail(asteroid) {
     <p><strong>Speed:</strong> ${formatSpeed(speed)}</p>
     <p><strong>Distance:</strong> ${formatDistance(distance)}</p>
     <canvas id="orbitChart" width="300" height="300" aria-label="Orbit visualization"></canvas>
-    <p><a href="/pages/list.html" id="back-link">← Back to list</a></p>
+    <p><a href="./list.html" id="back-link">← Back to list</a></p>
   `;
 
   renderOrbitChart("orbitChart", asteroid);
@@ -53,5 +57,3 @@ async function init() {
 }
 
 init();
-
-
