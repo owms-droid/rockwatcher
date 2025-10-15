@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import { configDefaults } from "vitest/config";
 
 export default defineConfig({
-  root: ".",
+  root: "./src",
   base: "./",
   build: {
     outDir: "dist",
@@ -13,7 +13,7 @@ export default defineConfig({
     open: true,
   },
   test: {
-    include: ["src/**/*.{test,spec}.{js,ts}"],
+    include: ["**/*.{test,spec}.{js,ts}"],
     exclude: [...configDefaults.exclude, "dist/**"],
   },
 });

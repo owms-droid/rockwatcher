@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Watcher | Asteroids</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="icon" type="image/png" href="/images/rockwatcherfavicon.png" />
+    <meta name="description" content="A web app to track Near-Earth Asteroids in real time using NASA's NEO API." />
+    <meta name="author" content="Oliver Modesto" />
+    <meta name="keywords" content="NASA, NEO, Asteroids, Space, Tracking, JavaScript" />
+    <meta property="og:title" content="Rock Watcher App" />
+    <meta property="og:description" content="Tracking Near-Earth Asteroids in Real Time" />
+    <meta property="og:image" content="/images/galaxy-night-view.jpg" />
+    <meta property="og:url" content="https://rockwatcher.netlify.app" />
+    <meta name="twitter:card" content="rockwatcher" />
+    <script type="module" src="/js/menu.js"></script>
+  </head>
+  <body>
+    <header class="divider" id="main-header"></header>
+    <main id="app">
+      <section class="list-controls">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect">
+          <option value="distance-asc">Distance (closest first)</option>
+          <option value="distance-desc">Distance (farthest first)</option>
+          <option value="speed-asc">Speed (slowest first)</option>
+          <option value="speed-desc">Speed (fastest first)</option>
+        </select>
+      </section>
+      <section id="asteroid-list"></section>
+      <section id="asteroid-detail" class="hidden"></section>
+    </main>
+    <footer id="main-footer"></footer>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
