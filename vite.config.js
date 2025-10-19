@@ -9,9 +9,9 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: "./index.html",
-        list: "./src/pages/list.html",
-        about: "./src/pages/about.html",
+        main: "/index.html",
+        list: "/list.html",
+        about: "/about.html",
         details: "./src/pages/details.html",
       },
     },
