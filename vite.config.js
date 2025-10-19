@@ -3,16 +3,16 @@ import { configDefaults } from "vitest/config";
 
 export default defineConfig({
   root: ".",
-  base: "/",
+  base: "./",
   build: {
     outDir: "dist",
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: "/index.html",
-        list: "/list.html",
-        about: "/about.html",
-        details: "./src/pages/details.html",
+        main: "index.html",
+        list: "src/pages/list.html",
+        about: "src/pages/about.html",
+        details: "src/pages/details.html",
       },
     },
   },
