@@ -5,7 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Redirect all non-file requests to index.html for SPA routing
+# force = false ensures that existing files (like list.html, about.html) are served first
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
