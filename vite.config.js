@@ -3,7 +3,7 @@ import { configDefaults } from "vitest/config";
 
 export default defineConfig({
   root: ".",
-  base: "./",
+  base: "/",
   build: {
     outDir: "dist",
     emptyOutDir: true,
