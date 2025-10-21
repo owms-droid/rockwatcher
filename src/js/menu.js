@@ -4,14 +4,14 @@ function renderHeader() {
   const header = document.getElementById("main-header");
   if (header) {
     const isProduction = window.location.hostname !== "localhost";
-    const basePath = isProduction ? "" : "/src";
+    const basePath = isProduction ? "/assets/img" : "/src/images";
 
     header.innerHTML = `
       <nav class="navbar">
         <a href="/" class="logo-container">
           <img
             class="logo"
-            src="${basePath}/images/rockwatcherlogo.svg"
+            src="${basePath}/rockwatcherlogo.svg"
             alt="RockWatcher Logo"
           />
           <span class="app-name">RockWatcher</span>

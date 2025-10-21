@@ -26,6 +26,10 @@ export default defineConfig({
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
             extType = "img";
           }
+          // Don't hash the logo SVG
+          if (assetInfo.name === "rockwatcherlogo.svg") {
+            return `assets/img/[name][extname]`;
+          }
           return `assets/${extType}/[name]-[hash][extname]`;
         },
         chunkFileNames: "assets/js/[name]-[hash].js",
