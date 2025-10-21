@@ -19,8 +19,8 @@ function renderHeader() {
         </a>
         <div class="nav-links">
           <a href="/" class="nav-link">Home</a>
-          <a href="/list.html" class="nav-link">Asteroids</a>
-          <a href="/about.html" class="nav-link">About</a>
+          <a href="${isProduction ? "/src/pages/list.html" : "/src/pages/list.html"}" class="nav-link">Asteroids</a>
+          <a href="${isProduction ? "/src/pages/about.html" : "/src/pages/about.html"}" class="nav-link">About</a>
         </div>
       </nav>
     `;

@@ -6,7 +6,29 @@
   NODE_VERSION = "18"
   PNPM_VERSION = "8"
 
-# Handle SPA routing while preserving direct file access
+# Redirect pages to their actual locations
+[[redirects]]
+  from = "/list.html"
+  to = "/src/pages/list.html"
+  status = 200
+
+[[redirects]]
+  from = "/about.html"
+  to = "/src/pages/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/details.html"
+  to = "/src/pages/details.html"
+  status = 200
+
+# Asset handling
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# Handle other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
