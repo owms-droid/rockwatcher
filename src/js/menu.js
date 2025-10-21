@@ -5,7 +5,6 @@ function renderHeader() {
   if (header) {
     const isProduction = window.location.hostname !== "localhost";
     const basePath = isProduction ? "" : "/src";
-    const pagesPath = isProduction ? "" : "/src/pages";
 
     header.innerHTML = `
       <nav class="navbar">

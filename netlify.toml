@@ -6,23 +6,30 @@
   NODE_VERSION = "18"
   PNPM_VERSION = "8"
 
-# Asset handling
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
+# Cache control for assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
 
-# SPA fallback
+# Ensure HTML files are never cached
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, no-cache"
+
+# Handle 404s with custom page
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Handle SPA paths last
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
   force = false
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
 
 # Cache control for static assets
 [[headers]]

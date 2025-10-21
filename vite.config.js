@@ -30,9 +30,6 @@ export default defineConfig({
         },
         chunkFileNames: "assets/js/[name]-[hash].js",
         entryFileNames: "assets/js/[name]-[hash].js",
-        dir: "dist",
-        // Ensure files maintain their names without hash in the URL
-        entryFileNames: "[name].html",
       },
     },
   },
