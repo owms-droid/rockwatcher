@@ -1,4 +1,10 @@
 
+export function safeNumber(value, decimals = 2) {
+  const n = parseFloat(value);
+  if (Number.isNaN(n)) return "Unknown";
+  return n.toFixed(decimals);
+}
+
 export function formatDistance(km) {
   const distance = parseFloat(km);
   if (Number.isNaN(distance)) return "Unknown distance";

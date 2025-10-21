@@ -19,6 +19,12 @@ export default defineConfig({
         details: resolve(__dirname, "src/pages/details.html"),
       },
     },
+    assetsDir: "assets",
+    sourcemap: true,
+    // Ensure assets are properly handled
+    assets: {
+      inline: false,
+    },
   },
   resolve: {
     alias: {
