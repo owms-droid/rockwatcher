@@ -16,9 +16,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        list: resolve(__dirname, "list.html"),
-        about: resolve(__dirname, "about.html"),
-        details: resolve(__dirname, "details.html"),
+        list: resolve(__dirname, "src/pages/list.html"),
+        about: resolve(__dirname, "src/pages/about.html"),
+        details: resolve(__dirname, "src/pages/details.html"),
       },
       output: {
         assetFileNames: (assetInfo) => {
@@ -30,6 +30,9 @@ export default defineConfig({
         },
         chunkFileNames: "assets/js/[name]-[hash].js",
         entryFileNames: "assets/js/[name]-[hash].js",
+        dir: "dist",
+        // Ensure files maintain their names without hash in the URL
+        entryFileNames: "[name].html",
       },
     },
   },

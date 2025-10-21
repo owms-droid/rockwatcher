@@ -6,34 +6,23 @@
   NODE_VERSION = "18"
   PNPM_VERSION = "8"
 
-# Redirect pages to their actual locations
-[[redirects]]
-  from = "/list.html"
-  to = "/src/pages/list.html"
-  status = 200
-
-[[redirects]]
-  from = "/about.html"
-  to = "/src/pages/about.html"
-  status = 200
-
-[[redirects]]
-  from = "/details.html"
-  to = "/src/pages/details.html"
-  status = 200
-
 # Asset handling
 [[redirects]]
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
 
-# Handle other routes
+# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
   force = false
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
 
 # Cache control for static assets
 [[headers]]
