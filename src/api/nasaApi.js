@@ -1,8 +1,10 @@
 // NASA NEO Feed endpoint
 const API_URL = "https://api.nasa.gov/neo/rest/v1/feed";
 
-// Get API key from environment variable
-const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+// Get API key from environment variable or fallback to default
+const API_KEY =
+  import.meta.env.VITE_NASA_API_KEY ||
+  "zdUP8ElJv1cehFM0rsZVSQN7uBVxlDnu4diHlLSb";
 
 export async function getAsteroids(startDate, endDate) {
   try {
