@@ -5,6 +5,7 @@ function renderHeader() {
   if (header) {
     const isProduction = window.location.hostname !== "localhost";
     const basePath = isProduction ? "" : "/src";
+    const pagesPath = isProduction ? "" : "/src/pages";
 
     header.innerHTML = `
       <nav class="navbar">
@@ -18,8 +19,8 @@ function renderHeader() {
         </a>
         <div class="nav-links">
           <a href="/" class="nav-link">Home</a>
-          <a href="${basePath}/pages/list.html" class="nav-link">Asteroids</a>
-          <a href="${basePath}/pages/about.html" class="nav-link">About</a>
+          <a href="/list.html" class="nav-link">Asteroids</a>
+          <a href="/about.html" class="nav-link">About</a>
         </div>
       </nav>
     `;
