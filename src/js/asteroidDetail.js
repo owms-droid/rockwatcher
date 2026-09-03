@@ -1,12 +1,6 @@
 // src/js/asteroidDetail.js
-import { formatDistance, formatSpeed } from "./utils.mjs";
+import { formatDistance, formatSpeed, safeNumber } from "./utils.mjs";
 import { renderOrbitChart } from "./orbitChart.js";
-
-function safeNumber(value, decimals = 2) {
-  const n = parseFloat(value);
-  if (Number.isNaN(n)) return "Unknown";
-  return n.toFixed(decimals);
-}
 
 export function renderAsteroidDetail(asteroid) {
   const section = document.getElementById("asteroid-detail");
@@ -25,7 +19,7 @@ export function renderAsteroidDetail(asteroid) {
   const distance = approach ? approach.miss_distance.kilometers : null;
 
   section.innerHTML = `
-    <h2>${asteroid.name || "Unknown"}</h2>
+    <h2 id="detail-heading" tabindex="-1">${asteroid.name || "Unknown"}</h2>
     <p><strong>ID:</strong> ${asteroid.id || "Unknown"}</p>
     <p><strong>Diameter (max):</strong> ${diameter === "Unknown" ? diameter : diameter + " m"}</p>
     <p><strong>Speed:</strong> ${formatSpeed(speed)}</p>
@@ -43,6 +37,12 @@ export function renderAsteroidDetail(asteroid) {
         .getElementById("asteroid-list")
         .scrollIntoView({ behavior: "smooth" });
     });
+  }
+
+  // Move focus to the detail heading for accessibility
+  const heading = document.getElementById("detail-heading");
+  if (heading) {
+    heading.focus();
   }
 
   // Render orbit chart (will handle missing data gracefully)

@@ -1,16 +1,10 @@
 import { getAsteroidById } from "../api/nasaApi.js";
-import { formatDistance, formatSpeed } from "./utils.mjs";
+import { formatDistance, formatSpeed, safeNumber } from "./utils.mjs";
 import { renderOrbitChart } from "./orbitChart.js";
 
 function getQueryParam(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name);
-}
-
-function safeNumber(value, decimals = 2) {
-  const n = parseFloat(value);
-  if (Number.isNaN(n)) return "Unknown";
-  return n.toFixed(decimals);
 }
 
 function renderDetail(asteroid) {
@@ -30,7 +24,7 @@ function renderDetail(asteroid) {
   const distance = approach ? approach.miss_distance.kilometers : null;
 
   section.innerHTML = `
-    <h1>${asteroid.name || "Unknown"}</h1>
+    <h1 id="detail-heading" tabindex="-1">${asteroid.name || "Unknown"}</h1>
     <p><strong>ID:</strong> ${asteroid.id || "Unknown"}</p>
     <p><strong>Diameter (max):</strong> ${diameter === "Unknown" ? diameter : diameter + " m"}</p>
     <p><strong>Speed:</strong> ${formatSpeed(speed)}</p>
@@ -38,6 +32,12 @@ function renderDetail(asteroid) {
     <canvas id="orbitChart" width="300" height="300" aria-label="Orbit visualization"></canvas>
     <p><a href="./list.html" id="back-link">← Back to list</a></p>
   `;
+
+  // Move focus to the detail heading for accessibility
+  const heading = document.getElementById("detail-heading");
+  if (heading) {
+    heading.focus();
+  }
 
   renderOrbitChart("orbitChart", asteroid);
 }

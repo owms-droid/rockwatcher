@@ -9,6 +9,7 @@
       type="image/png"
       href="/src/images/rockwatcherfavicon.png"
     />
+    <link rel="stylesheet" href="/src/styles/main.css" />
     <meta
       name="description"
       content="A web app to track Near-Earth Asteroids in real time using NASA's NEO API."
@@ -30,11 +31,12 @@
   </head>
 
   <body>
+    <a href="#app" class="skip-link">Skip to main content</a>
     <header class="divider" id="main-header"></header>
     <main id="app">
       <section class="list-controls">
-        <label for="sortSelect">Sort by:</label>
-        <select id="sortSelect">
+        <label for="sortSelect" class="visually-hidden">Sort asteroids by:</label>
+        <select id="sortSelect" aria-label="Sort asteroids by">
           <option value="distance-asc">Distance (closest first)</option>
           <option value="distance-desc">Distance (farthest first)</option>
           <option value="speed-asc">Speed (slowest first)</option>

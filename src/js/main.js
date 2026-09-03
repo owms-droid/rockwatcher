@@ -14,14 +14,19 @@ async function init() {
   }
 
   console.log("Initializing asteroid list...");
+  showLoading(true);
   try {
     const today = new Date().toISOString().split("T")[0];
     cachedAsteroids = await getAsteroids(today);
     console.log("Fetched asteroids:", cachedAsteroids.length);
+    hideError();
     applySortAndRender();
     wireSortControl();
   } catch (error) {
     console.error("Failed to initialize asteroid list:", error);
+    showError("Failed to load asteroid data. Please try again later.");
+  } finally {
+    showLoading(false);
   }
 }
 
@@ -64,6 +69,50 @@ function sortAsteroids(asteroids, mode) {
       return arr.sort(
         (a, b) => getMetrics(a).distance - getMetrics(b).distance,
       );
+  }
+}
+
+function showLoading(show) {
+  const container = document.getElementById("asteroid-list");
+  if (!container) return;
+  
+  let loader = document.getElementById("asteroid-loader");
+  if (show) {
+    if (!loader) {
+      loader = document.createElement("div");
+      loader.id = "asteroid-loader";
+      loader.className = "loader";
+      loader.setAttribute("role", "status");
+      loader.setAttribute("aria-live", "polite");
+      loader.innerHTML = '<div class="spinner"></div><p>Loading asteroids...</p>';
+      container.appendChild(loader);
+    }
+    loader.style.display = "flex";
+  } else if (loader) {
+    loader.style.display = "none";
+  }
+}
+
+function showError(message) {
+  const container = document.getElementById("asteroid-list");
+  if (!container) return;
+  
+  let errorEl = document.getElementById("asteroid-error");
+  if (!errorEl) {
+    errorEl = document.createElement("div");
+    errorEl.id = "asteroid-error";
+    errorEl.className = "error-banner";
+    errorEl.setAttribute("role", "alert");
+    container.appendChild(errorEl);
+  }
+  errorEl.textContent = message;
+  errorEl.style.display = "block";
+}
+
+function hideError() {
+  const errorEl = document.getElementById("asteroid-error");
+  if (errorEl) {
+    errorEl.style.display = "none";
   }
 }
 

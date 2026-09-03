@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  PNPM_VERSION = "8"
+  PNPM_VERSION = "9"
 
 # Cache control for assets
 [[headers]]
@@ -17,25 +17,6 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, no-cache"
-
-# Handle 404s with custom page
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
-
-# Handle SPA paths last
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-
-# Cache control for static assets
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
 
 # Security headers
 [[headers]]

@@ -1,10 +1,9 @@
-import "../styles/main.css";
-
 function renderHeader() {
   const header = document.getElementById("main-header");
   if (header) {
-    const isProduction = window.location.hostname !== "localhost";
+    const isProduction = !import.meta.env.DEV;
     const basePath = isProduction ? "/assets/img" : "/src/images";
+    const pagePath = isProduction ? "" : "/src/pages";
 
     header.innerHTML = `
       <nav class="navbar">
@@ -18,8 +17,8 @@ function renderHeader() {
         </a>
         <div class="nav-links">
           <a href="/" class="nav-link">Home</a>
-          <a href="/list.html" class="nav-link">Asteroids</a>
-          <a href="/about.html" class="nav-link">About</a>
+          <a href="${pagePath}/list.html" class="nav-link">Asteroids</a>
+          <a href="${pagePath}/about.html" class="nav-link">About</a>
         </div>
       </nav>
     `;
